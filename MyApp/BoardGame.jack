@@ -1,0 +1,84 @@
+class BoardGame{
+	field int lineOne;
+	field int lineTwo;
+	field int lineFour;
+	field int lineThree;
+	field int lineFive;
+	field Array Board;
+	static int numberRows;	
+	field int numOfunMarkedSticks;
+	
+	constructor BoardGame new(){
+		let numberRows = 5;
+		let numOfunMarkedSticks = 25;
+		let lineOne = 1;
+		let lineTwo = 3;	
+		let lineThree = 5;
+		let lineFour = 7;
+		let lineFive = 9;
+
+		let Board = Array.new (5);
+		let Board[0] = lineOne;
+		let Board[1] = lineTwo;
+		let Board[2] = lineThree;
+		let Board[3] = lineFour;
+		let Board[4] = lineFive;
+
+		return this;	
+	}
+	
+	
+	method int getNumOfUnmarkedSticks(){
+		return numOfunMarkedSticks;
+	}
+
+	method int getNumOfUnmarkedSticksInRow(int rowNum)
+	{
+		var int numOfSticks;
+		let numOfSticks = Board[rowNum-1];
+		return numOfSticks;
+	}
+	
+
+	method void printBoard(){
+		var int i;
+		var int j;
+		let i = 0;
+		while(i< 5)
+		{ 
+			let j=Board[i];
+			do Output.printInt(j);
+			let i= i+1;
+			do Output.println();
+		}
+		
+		do Output.println();
+		return;
+		}
+	
+
+	method void markStickSequence(Move move){
+		var int rowNum;
+		var int numOfSticks;
+		var int curRow;
+
+		let rowNum = move.getRow();
+		let numOfSticks = move.getNumOfSticks();
+		let curRow = getNumOfUnmarkedSticksInRow(rowNum);
+		let curRow = curRow - numOfSticks;
+		let Board[rowNum-1] = curRow;
+		let numOfunMarkedSticks =  numOfunMarkedSticks - numOfSticks;
+		return ;
+		}
+	
+	}
+	
+
+
+
+	
+		
+	
+		
+	
+	

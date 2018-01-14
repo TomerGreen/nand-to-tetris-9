@@ -1,0 +1,140 @@
+class Competition {
+	static int PLAYERONE;
+	static int PLAYERTWO;
+	static int VALIDMOVE;
+	static int MOVEEXCEEDBOUND;
+	static int NOSTICK;
+
+	field int player1Score;
+	field int player2Score;
+	
+	field Player player1;
+	field Player player2;
+	field String displayMessage;
+	
+	constructor Competition new(Player player1,Player player2){
+		let player1 = Player.new(1);
+		let player2 = Player.new(2);
+		
+		let PLAYERONE = 1;
+		let PLAYERTWO =2;
+		let VALIDMOVE = 0;
+		let MOVEEXCEEDBOUND = -1;
+		let NOSTICK = 2;
+		return this;
+	}
+	
+	
+	method int getPlayerScore(int playerNum){
+		if (playerNum = player1){
+			return player1Score;
+		}else {
+		return player2Score;
+	}
+	}
+	
+	method void playMultipleRounds(int numOfRounds){
+		var int i;
+		var BoardGame board;
+		var int currentPlayer;
+		var Move move;
+		var int stickNum;
+		
+		let move = Move.new(1,1);
+		
+		
+		do Output.printString("starting a nim competition, number of rounds:   ");
+		do Output.printInt(numOfRounds);
+		do Output.println();
+		let i = 1;
+		let numOfRounds = numOfRounds+1; 
+		while ( i<numOfRounds){
+
+			do Output.println();
+			let board = BoardGame.new();
+			do board.printBoard();
+			do Output.printString("welcome to the nim game!");
+			do Output.println();
+		
+			let currentPlayer = PLAYERONE;
+			let stickNum = board.getNumOfUnmarkedSticks();
+			
+			while ( stickNum>0){
+				do Output.printString("player: ");
+				do Output.printInt(currentPlayer);
+				do Output.printString(" it is now your turn!");
+				do Output.println();
+			
+				if (currentPlayer = PLAYERONE){
+					let move = player1.produceMove(board);
+					}
+				else{
+					let move = player2.produceMove(board);
+					}
+			
+				do board.markStickSequence(move);
+				do Output.printString("the move: ");
+				do move.printMove();
+
+				if(currentPlayer = PLAYERONE){
+					let currentPlayer = PLAYERTWO;
+					}
+				else{
+					let currentPlayer = PLAYERTWO;
+					}
+				do Screen.clearScreen();
+				do Output.moveCursor(0,0);
+				do board.printBoard();
+				let stickNum = board.getNumOfUnmarkedSticks();
+			}
+			
+			if (currentPlayer = PLAYERONE){
+				let player1Score = player1Score +1 ;
+				}
+			else{
+				let player2Score = player2Score +1; 
+			}
+			
+			do Output.printString("player: ");
+			do Output.printInt(currentPlayer);
+			do Output.printString(" won! at this round");
+			
+			let i = i + 1;
+		}
+		
+		do Output.printString("the results are: ");
+		do Output.println();
+		do Output.printString("player1: ");
+		do Output.printInt(player1Score);
+		do Output.println();
+		do Output.printString("player2: ");
+		do Output.printInt(player2Score);
+		do Output.println();
+		if (player1Score > player2Score){
+			do Output.printString("player1 win");
+			do Output.println();
+			}
+		if (player1Score < player2Score){
+			do Output.printString("player2 win");
+			}
+		else{
+			do Output.printString("it is teco");
+		}
+		return;
+	}
+	
+	
+	method void playSingleGame(){
+		
+		
+
+		return;
+		}
+	
+	}
+			
+			
+			
+			
+					
+		

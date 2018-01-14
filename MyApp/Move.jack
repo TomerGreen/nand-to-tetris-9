@@ -1,0 +1,30 @@
+class Move{
+	field int row;
+	field int numOfSticks;
+
+
+	constructor Move new(int playerRow, int playerNumOfSticks){
+		let row = playerRow;
+		let numOfSticks = playerNumOfSticks;
+		return this;
+	}
+	
+
+	
+	method int getNumOfSticks(){
+		return numOfSticks;
+		}
+	
+	method int getRow(){
+		return row;
+		}
+		
+	
+	method void printMove(){
+		do Output.printString("row: ");
+		do Output.printInt(row);
+		do Output.printString(",number of sticks: ");
+		do Output.printInt(numOfSticks);
+		return;
+		}
+	}

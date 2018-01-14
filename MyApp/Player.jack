@@ -1,0 +1,94 @@
+class Player{
+	field int playerId; 
+	static char MAKEMOVE;
+	field char DESPLAYBORD;
+	field char userInput;
+	
+
+	constructor Player new(int id){
+		let playerId = id;
+		let MAKEMOVE =1;
+		let DESPLAYBORD = 0;
+		let userInput = 0;
+		return this;
+		}
+
+	method int playerId(){
+		return playerId;
+		}
+	
+	method Move produceMove(BoardGame board){
+			var int row;
+			var int stickNum;
+			var Move move;
+			var boolean flag;
+			var boolean FALSE;
+			let FALSE = false;
+			let flag = false;
+			
+			while(flag = FALSE ){
+				let row = Keyboard.readInt("enter the row number:");
+				do Output.println();
+				let flag = Player.isValideRow(row, board);
+				if (flag = FALSE){
+						do Output.printString("invalid row");
+						}
+				}
+				
+			let flag = false;
+			while(flag = FALSE){
+				do Output.println();
+				let stickNum = Keyboard.readInt("enter the num of sticks you want to take from the row:");
+				do Output.println();
+				let flag = Player.isValideNumOfSticks(board, row, stickNum);
+				if (flag = FALSE){
+						do Output.printString("the num of sticks larger then the file");
+						}
+				}
+				
+			let move = Move.new(row, stickNum);
+			
+			return move;
+		}
+	
+	function boolean isValideRow(int rowNumber, BoardGame board){
+		var int numOfstickInRow;
+		let numOfstickInRow = board.getNumOfUnmarkedSticksInRow(rowNumber);
+		
+		if (rowNumber < 6 & rowNumber >0){
+			if(numOfstickInRow>0){
+				return true;
+				}
+			return false;
+			}
+		return false;
+		}
+	
+	function boolean isValideNumOfSticks(BoardGame board, int rowNumber, int stickNum ){
+		var int numOfstickInRow;
+		let numOfstickInRow = board.getNumOfUnmarkedSticksInRow(rowNumber);
+		let numOfstickInRow = numOfstickInRow +1;		
+		if (stickNum < numOfstickInRow){
+			return true;
+			}
+		return false;
+		}	
+	
+	method void startMove(){
+			let userInput = DESPLAYBORD;
+			while (~(userInput = MAKEMOVE)){
+				let userInput = Keyboard.readInt("press 0 to display the board. press 1 to make move:");
+				if(userInput = DESPLAYBORD){
+						do board.printBoard();
+					}
+				else {
+						if (~(userInput = MAKEMOVE)){
+							do Output.printString("unsupported command");
+						}
+					}
+				}
+				return;
+		}
+	
+	}
+	
