@@ -1,0 +1,18 @@
+class Main{
+	
+	function void main(){
+		var int gameNum;
+		var Player player1;
+		var Player player2;
+		var Competition competition;
+		
+		let gameNum = Keyboard.readInt("enter the number of rounds you want to play:  ");
+		do Output.moveCursor(2,0);
+		do Output.println();
+		let player1 = Player.new(1);
+		let player2 = Player.new(2);
+		let competition = Competition.new(player1,player2);
+		do competition.playMultipleRounds(gameNum);
+		return;
+		}
+	}
