@@ -5,12 +5,14 @@ class BoardGame{
 	field int lineThree;
 	field int lineFive;
 	field Array Board;
-	static int numberRows;	
+	static int numberRows;
 	field int numOfunMarkedSticks;
+	static int board_start_row;
 	
 	constructor BoardGame new(){
 		let numberRows = 5;
 		let numOfunMarkedSticks = 25;
+		let board_start_row = 5;
 		let lineOne = 1;
 		let lineTwo = 3;	
 		let lineThree = 5;
@@ -38,18 +40,35 @@ class BoardGame{
 		let numOfSticks = Board[rowNum-1];
 		return numOfSticks;
 	}
-	
+
+	function void draw_stick(int row, int column) {
+        do Screen.setColor(true);
+        do Screen.drawRectangle(column * 8, row * 11, (column * 8) + 6, (row * 11) + 8);
+        return;
+	}
+
+	function void draw_row(int row, int stickNum) {
+	    var int counter;
+	    let counter = 0;
+        while (counter < stickNum) {
+            do BoardGame.draw_stick(row, counter + 2);
+            let counter = counter + 1;
+        }
+        return;
+	}
+
 
 	method void printBoard(){
 		var int i;
-		var int j;
+		do Output.moveCursor(board_start_row, 0);
 		let i = 0;
+
 		while(i< 5)
-		{ 
-			let j=Board[i];
-			do Output.printInt(j);
-			let i= i+1;
+		{
+		    do Output.printInt(i + 1);
+			do BoardGame.draw_row(i + board_start_row, Board[i]);
 			do Output.println();
+			let i= i+1;
 		}
 		
 		do Output.println();

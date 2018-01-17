@@ -19,6 +19,8 @@ neg
 pop static 3
 push constant 2
 pop static 4
+push constant 15
+pop static 5
 push pointer 0
 return
 function Competition.getPlayerScore 0
@@ -233,6 +235,10 @@ push constant 0
 gt
 not
 if-goto WHILE_END1
+push static 5
+push constant 0
+call Output.moveCursor 2
+pop temp 0
 push constant 8
 call String.new 1
 push constant 112
